@@ -1,0 +1,29 @@
+{
+  "name": "chatdoc",
+  "version": "1.0.0",
+  "description": "Micro-SaaS de chat avec vos documents PDF (type ChatPDF)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "build": "node --check server.js && node --check lib/rag.js && node --check lib/pdf.js && node --check lib/billing.js && node --check lib/chunker.js && echo 'build OK (syntax only)'"
+  },
+  "keywords": [
+    "chatpdf",
+    "rag",
+    "express",
+    "pdf",
+    "saas"
+  ],
+  "author": "akaletekoffilevis",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.3.0",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^6.3.289",
+    "stripe": "^22.6.1"
+  }
+}
