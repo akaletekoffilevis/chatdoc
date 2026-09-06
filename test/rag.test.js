@@ -23,7 +23,16 @@ test('similarité cosinus : proches > éloignés', () => {
 
 test('ask sur document inconnu -> erreur', async () => {
   const engine = new RAGEngine();
-  await assert.rejects(() => engine.ask('nope', 'question'), /introuvable/);
+  await assert.rejects(() => engine.ask('user1', 'nope', 'question'), /introuvable/);
+});
+
+test('documents scopes par utilisateur', async () => {
+  const engine = new RAGEngine();
+  engine._userDocs('alice').set('d1', { id: 'd1', name: 'a', chunks: [], created: 1 });
+  engine._userDocs('bob').set('d2', { id: 'd2', name: 'b', chunks: [], created: 1 });
+  const ids = (arr) => arr.map((d) => d.id);
+  assert.deepStrictEqual(ids(engine.listDocuments('alice')), ['d1']);
+  assert.deepStrictEqual(ids(engine.listDocuments('bob')), ['d2']);
 });
 
 test('search trie les chunks par pertinence', () => {

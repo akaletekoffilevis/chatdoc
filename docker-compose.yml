@@ -1,0 +1,14 @@
+services:
+  chatdoc:
+    build: .
+    ports:
+      - "4000:4000"
+    env_file: .env
+    volumes:
+      - chatdoc-data:/app/data
+      - chatdoc-docs:/app/docs
+    restart: unless-stopped
+
+volumes:
+  chatdoc-data:
+  chatdoc-docs:

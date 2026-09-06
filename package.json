@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "node --test",
-    "build": "node --check server.js && node --check lib/rag.js && node --check lib/pdf.js && node --check lib/billing.js && node --check lib/chunker.js && echo 'build OK (syntax only)'"
+    "build": "node --check server.js && node --check lib/rag.js && node --check lib/extract.js && node --check lib/billing.js && node --check lib/auth.js && node --check lib/chunker.js && echo 'build OK (syntax only)'"
   },
   "keywords": [
     "chatpdf",
@@ -21,6 +21,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "mammoth": "^1.12.2",
     "multer": "^2.3.0",
     "pdf-parse": "^1.1.1",
     "pdfjs-dist": "^6.3.289",

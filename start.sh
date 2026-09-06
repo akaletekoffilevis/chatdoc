@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# Lance ChatDoc (serveur + UI). Arrêt : Ctrl+C ou : kill $(cat .pid)
+# Lance ChatDoc (server + UI). Arrêt :  kill -TERM $(cat .pid)
+set -e
 cd "$(dirname "$0")"
 if [ -f .pid ] && kill -0 "$(cat .pid)" 2>/dev/null; then
-  echo "ChatDoc tourne déjà (PID $(cat .pid)) → http://localhost:${PORT:-4000}"
+  echo "ChatDoc tourne deja (PID $(cat .pid)) →  http://localhost:${PORT:-4000}"
   exit 0
 fi
-node server.js &
+setsid nohup node server.js > /tmp/chatdoc.log 2>&1 < /dev/null &
 echo $! > .pid
-echo "ChatDoc démarré (PID $(cat .pid)) →  http://localhost:${PORT:-4000}"
+sleep 2
+echo "ChatDoc demarre (PID $(cat .pid)) →  http://localhost:${PORT:-4000}"

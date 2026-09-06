@@ -1,6 +1,7 @@
 node_modules/
 docs/
-data/billing.json
+# Données runtime (comptes, sessions, quotas) — recréées automatiquement
+data/
 .env
 .pid
 *.log
